@@ -1,0 +1,14 @@
+{
+  "name": "imagenim_crate",
+  "version": "0.1.0",
+  "files": [
+    "imagenim_crate_bg.wasm",
+    "imagenim_crate.js",
+    "imagenim_crate.d.ts"
+  ],
+  "module": "imagenim_crate.js",
+  "types": "imagenim_crate.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
