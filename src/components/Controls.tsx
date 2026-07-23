@@ -13,6 +13,7 @@ interface ControlsProps {
   onHintToggle: () => void;
   onCategoryChange: (categoryId: string) => void;
   onCustomImagesUpload: (files: FileList) => void;
+  onOpenHelp: () => void;
 }
 
 export const Controls: React.FC<ControlsProps> = ({
@@ -26,7 +27,8 @@ export const Controls: React.FC<ControlsProps> = ({
   onGameModeChange,
   onHintToggle,
   onCategoryChange,
-  onCustomImagesUpload
+  onCustomImagesUpload,
+  onOpenHelp
 }) => {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -79,6 +81,15 @@ export const Controls: React.FC<ControlsProps> = ({
       </div>
 
       <div className="button-group">
+        <button
+          className="btn"
+          onClick={onOpenHelp}
+          id="btn-help-modal"
+          title="How to play and credits"
+        >
+          ❓ How to Play
+        </button>
+
         <select
           className="select-input"
           value={selectedCategoryId}

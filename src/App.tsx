@@ -4,6 +4,7 @@ import { GameGrid } from './components/GameGrid';
 import { WinModal } from './components/WinModal';
 import { VictoryBanner } from './components/VictoryBanner';
 import { TurnBanner } from './components/TurnBanner';
+import { HelpModal } from './components/HelpModal';
 import { GameMode, ImageCategory, ImageItem, Player } from './types';
 import {
   initWasmEngine,
@@ -41,6 +42,7 @@ export const App: React.FC = () => {
   const [initialPuzzleMask, setInitialPuzzleMask] = useState<number>(0);
   const [toggledMask, setToggledMask] = useState<number>(0);
   const [targetBuffer, setTargetBuffer] = useState<Uint8Array | null>(null);
+  const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
 
   // Stats & Win State
   const [nMoves, setNMoves] = useState<number>(0);
@@ -360,6 +362,7 @@ export const App: React.FC = () => {
         onHintToggle={() => setHintMode(!hintMode)}
         onCategoryChange={handleCategoryChange}
         onCustomImagesUpload={handleCustomUpload}
+        onOpenHelp={() => setIsHelpOpen(true)}
       />
 
       {/* Victory Pause Banner */}
@@ -418,6 +421,11 @@ export const App: React.FC = () => {
           onNextGame={() => startNewGame()}
           onReplay={handleReplay}
         />
+      )}
+
+      {/* Help & Credits Modal */}
+      {isHelpOpen && (
+        <HelpModal onClose={() => setIsHelpOpen(false)} />
       )}
     </div>
   );
