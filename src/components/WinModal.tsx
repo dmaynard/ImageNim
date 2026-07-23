@@ -32,19 +32,19 @@ export const WinModal: React.FC<WinModalProps> = ({
             ? `Congratulations! ${stats.winner} matched their target image in ${stats.moves} total moves!`
             : isPerfect
             ? `Congratulations! You solved the puzzle in the optimal ${stats.perfectScore} moves!`
-            : `Great job! You solved it in ${stats.moves} moves.`}
+            : `Great job! You solved it in ${stats.moves} moves (Optimal score was ${stats.perfectScore}).`}
         </p>
 
         <div className="modal-stats-grid">
           <div className="modal-stat-box">
-            <div className="stat-label">Total Moves</div>
+            <div className="stat-label">{is2Player ? 'Total Moves' : 'Your Moves'}</div>
             <div className="modal-stat-val">{stats.moves}</div>
           </div>
 
           <div className="modal-stat-box">
-            <div className="stat-label">Mode</div>
-            <div className="modal-stat-val" style={{ color: 'var(--accent-cyan)', fontSize: '1.2rem' }}>
-              {is2Player ? '2 Players' : '1 Player'}
+            <div className="stat-label">{is2Player ? 'Mode' : 'Optimal Score'}</div>
+            <div className="modal-stat-val" style={{ color: is2Player ? 'var(--accent-cyan)' : 'var(--accent-pink)', fontSize: is2Player ? '1.2rem' : '1.8rem' }}>
+              {is2Player ? '2 Players' : stats.perfectScore}
             </div>
           </div>
         </div>
