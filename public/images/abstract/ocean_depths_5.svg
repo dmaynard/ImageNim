@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <linearGradient id="agrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#028090" />
+          <stop offset="50%" stop-color="#00a896" />
+          <stop offset="100%" stop-color="#02c39a" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#001a2e" />
+      <path d="M 0 100 Q 75 80 150 90 T 300 112 V 225 H 0 Z" fill="url(#agrad4)" opacity="0.8" />
+      <circle cx="160" cy="112" r="52" fill="#028090" opacity="0.5" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">ocean_depths_5</text>
+  </svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <linearGradient id="agrad9" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0077b6" />
+          <stop offset="50%" stop-color="#0096c7" />
+          <stop offset="100%" stop-color="#03045e" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#001c24" />
+      <path d="M 0 150 Q 75 155 150 65 T 300 152 V 225 H 0 Z" fill="url(#agrad9)" opacity="0.8" />
+      <circle cx="235" cy="152" r="67" fill="#0077b6" opacity="0.5" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">hidden_quantum_10</text>
+  </svg>

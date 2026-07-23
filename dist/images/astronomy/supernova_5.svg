@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <radialGradient id="grad4" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#f80759" stop-opacity="0.9" />
+          <stop offset="60%" stop-color="#bc4e9c" stop-opacity="0.6" />
+          <stop offset="100%" stop-color="#6a11cb" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="lgrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f80759" />
+          <stop offset="100%" stop-color="#bc4e9c" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#0f051d" />
+      <circle cx="119.72790018768288" cy="92.39069137409165" r="86" fill="url(#grad4)" />
+      <circle cx="140" cy="110" r="3" fill="#ffffff" opacity="0.9" />
+      <circle cx="180" cy="140" r="3" fill="#ffffff" opacity="0.8" />
+      <path d="M 120 140 Q 150 50 200 140" stroke="url(#lgrad4)" stroke-width="3" fill="none" opacity="0.7" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">supernova_5</text>
+  </svg>

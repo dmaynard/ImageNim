@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <radialGradient id="grad8" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#e100ff" stop-opacity="0.9" />
+          <stop offset="60%" stop-color="#7f00ff" stop-opacity="0.6" />
+          <stop offset="100%" stop-color="#00d2ff" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="lgrad8" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#e100ff" />
+          <stop offset="100%" stop-color="#7f00ff" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#0b001a" />
+      <circle cx="189.57432986493527" cy="107.63499898574159" r="102" fill="url(#grad8)" />
+      <circle cx="220" cy="170" r="4" fill="#ffffff" opacity="0.9" />
+      <circle cx="120" cy="100" r="3" fill="#ffffff" opacity="0.8" />
+      <path d="M 220 100 Q 150 50 120 160" stroke="url(#lgrad8)" stroke-width="3" fill="none" opacity="0.7" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">hidden_quasar_9</text>
+  </svg>

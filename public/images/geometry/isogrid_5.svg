@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <linearGradient id="ggrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ea00d9" />
+          <stop offset="100%" stop-color="#711c91" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#1a001a" />
+      <g stroke="#ea00d9" stroke-width="2" fill="none" opacity="0.8">
+        <polygon points="150,30 210,178 90,178" fill="url(#ggrad4)" fill-opacity="0.3"/>
+        <rect x="90" y="60" width="132" height="132" rx="8" stroke="#ea00d9" stroke-width="3" transform="rotate(48 150 112)"/>
+        <circle cx="150" cy="112" r="54" stroke="url(#ggrad4)" stroke-width="2" />
+      </g>
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">isogrid_5</text>
+  </svg>

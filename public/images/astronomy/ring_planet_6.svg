@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <radialGradient id="grad5" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.9" />
+          <stop offset="60%" stop-color="#4facfe" stop-opacity="0.6" />
+          <stop offset="100%" stop-color="#00c6ff" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="lgrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00f2fe" />
+          <stop offset="100%" stop-color="#4facfe" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#050c1e" />
+      <circle cx="111.64302901347446" cy="120.50986556389678" r="90" fill="url(#grad5)" />
+      <circle cx="160" cy="125" r="4" fill="#ffffff" opacity="0.9" />
+      <circle cx="165" cy="130" r="4" fill="#ffffff" opacity="0.8" />
+      <path d="M 145 130 Q 150 50 180 145" stroke="url(#lgrad5)" stroke-width="4" fill="none" opacity="0.7" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">ring_planet_6</text>
+  </svg>

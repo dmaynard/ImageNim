@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <linearGradient id="agrad8" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3c096c" />
+          <stop offset="50%" stop-color="#5a189a" />
+          <stop offset="100%" stop-color="#7b2cbf" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#10002b" />
+      <path d="M 0 140 Q 75 140 150 70 T 300 144 V 225 H 0 Z" fill="url(#agrad8)" opacity="0.8" />
+      <circle cx="220" cy="144" r="64" fill="#3c096c" opacity="0.5" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">hidden_vortex_9</text>
+  </svg>

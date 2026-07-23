@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#7928ca" stop-opacity="0.9" />
+          <stop offset="60%" stop-color="#ff0080" stop-opacity="0.6" />
+          <stop offset="100%" stop-color="#4285f4" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="lgrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#7928ca" />
+          <stop offset="100%" stop-color="#ff0080" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#080811" />
+      <circle cx="183.65883939231585" cy="128.20906917604418" r="74" fill="url(#grad1)" />
+      <circle cx="80" cy="65" r="3" fill="#ffffff" opacity="0.9" />
+      <circle cx="225" cy="170" r="4" fill="#ffffff" opacity="0.8" />
+      <path d="M 45 170 Q 150 50 260 125" stroke="url(#lgrad1)" stroke-width="4" fill="none" opacity="0.7" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">starlight_galaxy_2</text>
+  </svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <radialGradient id="grad7" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#ff0055" stop-opacity="0.9" />
+          <stop offset="60%" stop-color="#ff5000" stop-opacity="0.6" />
+          <stop offset="100%" stop-color="#7a00ff" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="lgrad7" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ff0055" />
+          <stop offset="100%" stop-color="#ff5000" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#000000" />
+      <circle cx="176.27946394875156" cy="134.61706763029915" r="98" fill="url(#grad7)" />
+      <circle cx="200" cy="155" r="3" fill="#ffffff" opacity="0.9" />
+      <circle cx="135" cy="110" r="4" fill="#ffffff" opacity="0.8" />
+      <path d="M 195 110 Q 150 50 140 155" stroke="url(#lgrad7)" stroke-width="6" fill="none" opacity="0.7" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">black_hole_8</text>
+  </svg>

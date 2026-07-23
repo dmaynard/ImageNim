@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <linearGradient id="agrad7" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#e52d27" />
+          <stop offset="50%" stop-color="#b31217" />
+          <stop offset="100%" stop-color="#ff512f" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#260000" />
+      <path d="M 0 130 Q 75 125 150 75 T 300 136 V 225 H 0 Z" fill="url(#agrad7)" opacity="0.8" />
+      <circle cx="205" cy="136" r="61" fill="#e52d27" opacity="0.5" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">sunfire_plasma_8</text>
+  </svg>

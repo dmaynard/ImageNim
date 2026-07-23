@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <linearGradient id="agrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ff4e50" />
+          <stop offset="50%" stop-color="#f9d423" />
+          <stop offset="100%" stop-color="#e65c00" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#1f0008" />
+      <path d="M 0 90 Q 75 65 150 95 T 300 104 V 225 H 0 Z" fill="url(#agrad3)" opacity="0.8" />
+      <circle cx="145" cy="104" r="49" fill="#ff4e50" opacity="0.5" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">sunset_lava_4</text>
+  </svg>

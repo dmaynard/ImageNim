@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="225" viewBox="0 0 300 225">
+    
+      <defs>
+        <radialGradient id="grad6" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#00ff87" stop-opacity="0.9" />
+          <stop offset="60%" stop-color="#60efff" stop-opacity="0.6" />
+          <stop offset="100%" stop-color="#0061ff" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="lgrad6" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00ff87" />
+          <stop offset="100%" stop-color="#60efff" />
+        </linearGradient>
+      </defs>
+      <rect width="300" height="225" fill="#001419" />
+      <circle cx="138.82338007204297" cy="140.805108599511" r="94" fill="url(#grad6)" />
+      <circle cx="180" cy="140" r="2" fill="#ffffff" opacity="0.9" />
+      <circle cx="150" cy="120" r="3" fill="#ffffff" opacity="0.8" />
+      <path d="M 170 120 Q 150 50 160 150" stroke="url(#lgrad6)" stroke-width="5" fill="none" opacity="0.7" />
+    
+    <text x="15" y="210" font-family="'Outfit', sans-serif" font-size="12" font-weight="600" fill="#ffffff" opacity="0.6">aurora_borealis_7</text>
+  </svg>
