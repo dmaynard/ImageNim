@@ -497,6 +497,8 @@ body {
     align-items: stretch;
   }
   .button-group {
+    justify-content: center;
+  }
 }
 
 /* ==========================================================================
