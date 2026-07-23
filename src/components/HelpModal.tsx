@@ -41,7 +41,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
                 <strong>1 Player (Solitaire):</strong> Toggle outer tiles to completely clear the central canvas (making it all black). Try to match the <em>Optimal Score</em> (fewest clicks needed)!
               </li>
               <li>
-                <strong>2 Players (Versus):</strong> Players take turns clicking tiles. Player 1 and Player 2 are assigned secret target cards. The first player to make the center canvas match their assigned target card wins!
+                <strong>2 Players (Versus):</strong> Players take turns clicking tiles. Player 1 and Player 2 are assigned target cards. The first player to make the center canvas match their assigned target card wins!
               </li>
               <li>
                 <strong>Custom Image Sets:</strong> Click <em>Upload Custom Images</em> to play with 8+ photos from your own computer.
