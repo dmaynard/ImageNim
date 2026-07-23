@@ -3,6 +3,7 @@ import { Controls } from './components/Controls';
 import { GameGrid } from './components/GameGrid';
 import { WinModal } from './components/WinModal';
 import { VictoryBanner } from './components/VictoryBanner';
+import { TurnBanner } from './components/TurnBanner';
 import { GameMode, ImageCategory, ImageItem, Player } from './types';
 import {
   initWasmEngine,
@@ -371,6 +372,15 @@ export const App: React.FC = () => {
         />
       )}
 
+      {/* 2-Player Active Turn Banner */}
+      {gameMode === 'HARD' && !isVictoryPause && (
+        <TurnBanner
+          currentTurn={currentTurn}
+          p1TargetNum={player1TargetIndex + 1}
+          p2TargetNum={player2TargetIndex + 1}
+        />
+      )}
+
       {/* Main 3x3 Game Grid */}
       {loading ? (
         <div className="grid-wrapper" style={{ padding: '4rem', color: 'var(--accent-cyan)' }}>
@@ -384,6 +394,7 @@ export const App: React.FC = () => {
           gameMode={gameMode}
           player1TargetIndex={player1TargetIndex}
           player2TargetIndex={player2TargetIndex}
+          currentTurn={currentTurn}
           targetBuffer={targetBuffer}
           canvasWidth={CANVAS_WIDTH}
           canvasHeight={CANVAS_HEIGHT}

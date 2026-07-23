@@ -497,8 +497,118 @@ body {
     align-items: stretch;
   }
   .button-group {
-    justify-content: center;
-  }
+}
+
+/* ==========================================================================
+   2-Player Active Turn Banner & Grid Aura
+   ========================================================================== */
+
+.turn-banner-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+.turn-banner-container.p1-turn {
+  border-color: rgba(0, 242, 254, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
+}
+
+.turn-banner-container.p2-turn {
+  border-color: rgba(255, 0, 127, 0.4);
+  box-shadow: 0 4px 20px rgba(255, 0, 127, 0.15);
+}
+
+.turn-banner-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.turn-mode-tag {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-main);
+}
+
+.turn-subtext {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.turn-subtext strong {
+  color: var(--text-main);
+}
+
+.turn-banner-center {
+  display: flex;
+  align-items: center;
+}
+
+.turn-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.turn-pill.p1 {
+  background: rgba(0, 242, 254, 0.18);
+  color: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+  animation: pulseTurnP1 1.5s infinite alternate;
+}
+
+.turn-pill.p2 {
+  background: rgba(255, 0, 127, 0.18);
+  color: var(--accent-pink);
+  border: 1px solid var(--accent-pink);
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+  animation: pulseTurnP2 1.5s infinite alternate;
+}
+
+.turn-arrow {
+  font-size: 1rem;
+}
+
+/* Active Player Grid Outer Aura */
+.grid-wrapper.turn-p1-active .game-grid {
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.grid-wrapper.turn-p2-active .game-grid {
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 30px rgba(255, 0, 127, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+@keyframes pulseTurnP1 {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
+  100% { transform: scale(1.03); box-shadow: 0 0 20px rgba(0, 242, 254, 0.6); }
+}
+
+@keyframes pulseTurnP2 {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 0, 127, 0.3); }
+  100% { transform: scale(1.03); box-shadow: 0 0 20px rgba(255, 0, 127, 0.6); }
 }
 
 /* ==========================================================================

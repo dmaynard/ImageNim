@@ -10,6 +10,7 @@ interface GameGridProps {
   gameMode: GameMode;
   player1TargetIndex?: number;
   player2TargetIndex?: number;
+  currentTurn?: Player;
   targetBuffer: Uint8Array | null;
   canvasWidth: number;
   canvasHeight: number;
@@ -26,6 +27,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
   gameMode,
   player1TargetIndex,
   player2TargetIndex,
+  currentTurn,
   targetBuffer,
   canvasWidth,
   canvasHeight,
@@ -83,8 +85,14 @@ export const GameGrid: React.FC<GameGridProps> = ({
     );
   };
 
+  const gridWrapperClasses = [
+    'grid-wrapper',
+    isVictoryPause ? 'victory-active' : '',
+    gameMode === 'HARD' ? (currentTurn === 'Player 1' ? 'turn-p1-active' : 'turn-p2-active') : ''
+  ].filter(Boolean).join(' ');
+
   return (
-    <div className={`grid-wrapper ${isVictoryPause ? 'victory-active' : ''}`}>
+    <div className={gridWrapperClasses}>
       <div className="game-grid" id="main-game-grid">
         {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(slotIdx => renderSlot(slotIdx))}
       </div>
