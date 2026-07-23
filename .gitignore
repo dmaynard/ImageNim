@@ -1,0 +1,8 @@
+# Local marketing playbook
+marketing.md
+
+# Dependencies & Build Outputs
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
