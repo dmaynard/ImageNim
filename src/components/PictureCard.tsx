@@ -39,7 +39,6 @@ export const PictureCard: React.FC<PictureCardProps> = ({
       className={cardClasses}
       onClick={onClick}
       id={`picture-card-${index}`}
-      title={`Image #${index + 1}: ${image.name}`}
     >
       <div className="card-badge">#{index + 1}</div>
 
