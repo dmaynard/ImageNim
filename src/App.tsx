@@ -99,7 +99,8 @@ export const App: React.FC = () => {
   const startNewGame = useCallback(async (
     replayingMask?: number,
     catId?: string,
-    modeOverride?: GameMode
+    modeOverride?: GameMode,
+    categoryOverride?: ImageCategory
   ) => {
     if (!wasmReady) return;
     setLoading(true);
@@ -113,7 +114,7 @@ export const App: React.FC = () => {
 
     const activeCatId = catId || selectedCategoryId;
     const activeMode = modeOverride || gameMode;
-    const category = categories.find(c => c.id === activeCatId) || categories[0];
+    const category = categoryOverride || categories.find(c => c.id === activeCatId) || categories[0];
 
     let currentOuters = outerLoadedImages;
     let currentItems = outerDisplayItems;
@@ -319,7 +320,7 @@ export const App: React.FC = () => {
 
     setCategories(prev => [customCategory, ...prev]);
     setSelectedCategoryId(customCategory.id);
-    startNewGame(undefined, customCategory.id);
+    startNewGame(undefined, customCategory.id, undefined, customCategory);
   };
 
   return (
