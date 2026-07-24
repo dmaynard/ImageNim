@@ -293,10 +293,10 @@ export const App: React.FC = () => {
     startNewGame(initialPuzzleMask);
   };
 
-  // Custom Image Upload Handler
+  // Custom Image Upload Handler (iPhone Photos & Desktop Files)
   const handleCustomUpload = async (files: FileList) => {
     if (files.length < 8) {
-      alert('Please select at least 8 image files to create a custom category!');
+      alert(`Please select at least 8 photos from your Photos app (you selected ${files.length}).`);
       return;
     }
 
@@ -304,16 +304,24 @@ export const App: React.FC = () => {
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       const url = URL.createObjectURL(file);
+      const fileName = file.name ? file.name.replace(/\.[^/.]+$/, '') : `Photo #${i + 1}`;
       customImages.push({
-        id: `custom-${i}`,
-        name: file.name.replace(/\.[^/.]+$/, ''),
+        id: `custom-${i}-${Date.now()}`,
+        name: fileName || `Photo #${i + 1}`,
         url
       });
     }
 
+    // Prompt for group name or default to My Photos
+    const defaultGroupName = `My Photos (${customImages.length} items)`;
+    const groupName = prompt(
+      `Selected ${customImages.length} photos! Enter a name for this custom photo group:`,
+      defaultGroupName
+    ) || defaultGroupName;
+
     const customCategory: ImageCategory = {
       id: `custom-${Date.now()}`,
-      name: `Custom Set (${customImages[0].name}...)`,
+      name: groupName,
       description: 'User uploaded custom image set',
       images: customImages
     };

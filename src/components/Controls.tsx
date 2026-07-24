@@ -103,13 +103,13 @@ export const Controls: React.FC<ControlsProps> = ({
           ))}
         </select>
 
-        <label className="btn" htmlFor="custom-image-upload" id="label-upload">
-          📁 Upload Custom Images
+        <label className="btn btn-primary" htmlFor="custom-image-upload" id="label-upload" title="Select 8 or more photos from iPhone Photos App or computer">
+          📱 Create Group from Photos
           <input
             id="custom-image-upload"
             type="file"
             multiple
-            accept="image/*"
+            accept="image/*,image/heic,image/heif"
             style={{ display: 'none' }}
             onChange={handleFileChange}
           />
