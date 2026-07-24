@@ -27,7 +27,10 @@ export const App: React.FC = () => {
 
   // Categories & Image Selection
   const [categories, setCategories] = useState<ImageCategory[]>(PRESET_CATEGORIES);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('bryce');
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>(() => {
+    const randomIndex = Math.floor(Math.random() * PRESET_CATEGORIES.length);
+    return PRESET_CATEGORIES[randomIndex].id;
+  });
   const [outerDisplayItems, setOuterDisplayItems] = useState<ImageItem[]>([]);
   const [outerLoadedImages, setOuterLoadedImages] = useState<LoadedImageData[]>([]);
 
