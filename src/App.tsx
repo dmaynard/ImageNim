@@ -70,29 +70,38 @@ export const App: React.FC = () => {
     };
   }, []);
 
-  // Helper: Pick 8 random images from category
-  const selectRandomImagesFromCategory = (category: ImageCategory) => {
+  // Helper: Pick 8 distinct random images from category (no duplicates if total >= 8)
+  const selectRandomImagesFromCategory = (category: ImageCategory): ImageItem[] => {
     const total = category.images.length;
-    const seed = BigInt(Math.floor(Date.now() + Math.random() * 1000000));
-    
-    // WASM select 8 outer items
-    const selectedFlags = select_random_subset(8, total, seed);
-    const selectedOuters: ImageItem[] = [];
-    const excludedList: ImageItem[] = [];
+    if (total === 0) return [];
 
-    for (let i = 0; i < total; i++) {
-      if (selectedFlags[i] === 1 && selectedOuters.length < 8) {
-        selectedOuters.push(category.images[i]);
-      } else {
-        excludedList.push(category.images[i]);
+    // Deduplicate images by URL/ID just in case identical files were selected
+    const uniqueImages: ImageItem[] = [];
+    const seen = new Set<string>();
+    for (const img of category.images) {
+      const key = img.url || img.id;
+      if (!seen.has(key)) {
+        seen.add(key);
+        uniqueImages.push(img);
       }
     }
 
-    while (selectedOuters.length < 8 && excludedList.length > 0) {
-      selectedOuters.push(excludedList.pop()!);
+    // If >= 8 unique images, pick 8 distinct items randomly (Fisher-Yates shuffle)
+    if (uniqueImages.length >= 8) {
+      const pool = [...uniqueImages];
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+      return pool.slice(0, 8);
     }
 
-    return selectedOuters;
+    // If < 8 unique images available, repeat items to reach 8
+    const items = [...uniqueImages];
+    while (items.length < 8) {
+      items.push(uniqueImages[items.length % uniqueImages.length]);
+    }
+    return items;
   };
 
   // Start new game or shuffle new images
