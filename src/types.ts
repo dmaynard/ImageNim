@@ -1,4 +1,6 @@
-export type GameMode = 'EASY' | 'HARD';
+export type PlayMode = 'SOLO' | 'VERSUS';
+export type Difficulty = 'EASY' | 'HARD';
+export type GameMode = PlayMode;
 
 export type Player = 'Player 1' | 'Player 2';
 

@@ -5,7 +5,7 @@ import { WinModal } from './components/WinModal';
 import { VictoryBanner } from './components/VictoryBanner';
 import { TurnBanner } from './components/TurnBanner';
 import { HelpModal } from './components/HelpModal';
-import { GameMode, ImageCategory, ImageItem, Player } from './types';
+import { PlayMode, Difficulty, ImageCategory, ImageItem, Player } from './types';
 import {
   initWasmEngine,
   clear_canvas,
@@ -34,13 +34,15 @@ export const App: React.FC = () => {
   const [outerDisplayItems, setOuterDisplayItems] = useState<ImageItem[]>([]);
   const [outerLoadedImages, setOuterLoadedImages] = useState<LoadedImageData[]>([]);
 
-  // Game Mode & 2-Player Target Assignments
-  const [gameMode, setGameMode] = useState<GameMode>('EASY');
+  // Play Mode (1P vs 2P) & Difficulty (Easy: 2 cards, Hard: 3-8 cards)
+  const [playMode, setPlayMode] = useState<PlayMode>('SOLO');
+  const [difficulty, setDifficulty] = useState<Difficulty>('EASY');
   const [player1TargetIndex, setPlayer1TargetIndex] = useState<number>(0);
   const [player2TargetIndex, setPlayer2TargetIndex] = useState<number>(1);
   const [currentTurn, setCurrentTurn] = useState<Player>('Player 1');
 
   // Game Settings & State
+  const [exploreMode, setExploreMode] = useState<boolean>(false);
   const [hintMode, setHintMode] = useState<boolean>(false);
   const [initialPuzzleMask, setInitialPuzzleMask] = useState<number>(0);
   const [toggledMask, setToggledMask] = useState<number>(0);
@@ -111,8 +113,9 @@ export const App: React.FC = () => {
   const startNewGame = useCallback(async (
     replayingMask?: number,
     catId?: string,
-    modeOverride?: GameMode,
-    categoryOverride?: ImageCategory
+    modeOverride?: PlayMode,
+    categoryOverride?: ImageCategory,
+    diffOverride?: Difficulty
   ) => {
     if (!wasmReady) return;
     setLoading(true);
@@ -125,7 +128,8 @@ export const App: React.FC = () => {
     setWinningCardIndex(undefined);
 
     const activeCatId = catId || selectedCategoryId;
-    const activeMode = modeOverride || gameMode;
+    const activeMode = modeOverride || playMode;
+    const activeDiff = diffOverride || difficulty;
     const category = categoryOverride || categories.find(c => c.id === activeCatId) || categories[0];
 
     let currentOuters = outerLoadedImages;
@@ -168,9 +172,11 @@ export const App: React.FC = () => {
     if (replayingMask !== undefined) {
       mask = replayingMask;
     } else {
-      // Pick random initial subset of 3 to 6 tiles out of 8
+      // Easy mode: exactly 2 cards XORed; Hard mode: 3 to 8 cards XORed
+      const minCards = activeDiff === 'EASY' ? 2 : 3;
+      const maxCards = activeDiff === 'EASY' ? 2 : 8;
       const randomSeed = BigInt(Math.floor(Date.now() + Math.random() * 1000000));
-      mask = generate_initial_puzzle_mask(8, 3, 6, randomSeed);
+      mask = generate_initial_puzzle_mask(8, minCards, maxCards, randomSeed);
     }
 
     setInitialPuzzleMask(mask);
@@ -195,7 +201,8 @@ export const App: React.FC = () => {
     wasmReady,
     selectedCategoryId,
     categories,
-    gameMode,
+    playMode,
+    difficulty,
     outerLoadedImages,
     outerDisplayItems,
     player1TargetIndex,
@@ -215,10 +222,27 @@ export const App: React.FC = () => {
     startNewGame(undefined, catId);
   };
 
-  // Handle game mode change (1 Player vs 2 Players)
-  const handleGameModeChange = (mode: GameMode) => {
-    setGameMode(mode);
+  // Handle play mode change (1 Player vs 2 Players)
+  const handlePlayModeChange = (mode: PlayMode) => {
+    setPlayMode(mode);
     startNewGame(undefined, undefined, mode);
+  };
+
+  // Handle difficulty toggle (Easy: 2 cards, Hard: 3-8 cards)
+  const handleDifficultyToggle = () => {
+    const nextDiff = difficulty === 'EASY' ? 'HARD' : 'EASY';
+    setDifficulty(nextDiff);
+    startNewGame(undefined, undefined, undefined, undefined, nextDiff);
+  };
+
+  // Handle Explore Mode toggle (no endgame criteria when active; turning off restarts same game)
+  const handleExploreToggle = () => {
+    if (exploreMode) {
+      setExploreMode(false);
+      startNewGame(initialPuzzleMask);
+    } else {
+      setExploreMode(true);
+    }
   };
 
   // Trigger win pause animation sequence before displaying modal summary
@@ -251,7 +275,7 @@ export const App: React.FC = () => {
 
   // Handle outer picture tile click
   const handleTileClick = (index: number) => {
-    console.log('🖱️ [ImageNim] Tile clicked:', index, 'isWon:', isWon, 'isVictoryPause:', isVictoryPause, 'gameMode:', gameMode);
+    console.log('🖱️ [ImageNim] Tile clicked:', index, 'isWon:', isWon, 'isVictoryPause:', isVictoryPause, 'playMode:', playMode, 'difficulty:', difficulty, 'exploreMode:', exploreMode);
     if (isWon || isVictoryPause || !targetBuffer || index < 0 || index >= outerLoadedImages.length) return;
 
     const newTarget = new Uint8Array(targetBuffer);
@@ -267,7 +291,13 @@ export const App: React.FC = () => {
     const moves = nMoves + 1;
     setNMoves(moves);
 
-    if (gameMode === 'EASY') {
+    // Explore Mode: No endgame criteria, user can freely select cards continuously
+    if (exploreMode) {
+      console.log('🔍 [ImageNim] Explore mode active - bypassing endgame check.');
+      return;
+    }
+
+    if (playMode === 'SOLO') {
       // 1 Player Solitaire Mode: Win when central canvas is clear/black
       if (newToggledMask === 0 || is_canvas_black(newTarget)) {
         console.log('🎉 [ImageNim] 1P Win condition met!');
@@ -372,14 +402,18 @@ export const App: React.FC = () => {
 
       {/* Controls Toolbar */}
       <Controls
-        gameMode={gameMode}
+        playMode={playMode}
+        difficulty={difficulty}
+        exploreMode={exploreMode}
         hintMode={hintMode}
         currentTurn={currentTurn}
         categories={categories.map(c => ({ id: c.id, name: c.name }))}
         selectedCategoryId={selectedCategoryId}
         onNewGame={() => startNewGame()}
         onReplay={handleReplay}
-        onGameModeChange={handleGameModeChange}
+        onPlayModeChange={handlePlayModeChange}
+        onDifficultyToggle={handleDifficultyToggle}
+        onExploreToggle={handleExploreToggle}
         onHintToggle={() => setHintMode(!hintMode)}
         onCategoryChange={handleCategoryChange}
         onCustomImagesUpload={handleCustomUpload}
@@ -397,7 +431,7 @@ export const App: React.FC = () => {
       )}
 
       {/* 2-Player Active Turn Banner */}
-      {gameMode === 'HARD' && !isVictoryPause && (
+      {playMode === 'VERSUS' && !isVictoryPause && (
         <TurnBanner
           currentTurn={currentTurn}
           p1TargetNum={player1TargetIndex + 1}
@@ -415,7 +449,7 @@ export const App: React.FC = () => {
           outerImages={outerDisplayItems}
           toggledMask={toggledMask}
           hintMode={hintMode}
-          gameMode={gameMode}
+          playMode={playMode}
           player1TargetIndex={player1TargetIndex}
           player2TargetIndex={player2TargetIndex}
           currentTurn={currentTurn}

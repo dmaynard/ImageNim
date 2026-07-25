@@ -33,19 +33,38 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
             </p>
           </div>
 
-          {/* Game Modes */}
+          {/* Game Modes & Features */}
           <div className="help-section">
-            <h3>🎮 Game Modes</h3>
+            <h3>🎮 Game Modes & Controls</h3>
             <ul>
               <li>
-                <strong>1 Player (Solitaire):</strong> Toggle outer tiles to completely clear the central canvas (making it all black). Try to match the <em>Optimal Score</em> (fewest clicks needed)!
+                <strong>1 Player (Solitaire):</strong> Toggle outer tiles to completely clear the central canvas (making it opaque black). Solve the puzzle in as few moves as possible!
               </li>
               <li>
-                <strong>2 Players (Versus):</strong> Players take turns clicking tiles. Player 1 and Player 2 are assigned target cards. The first player to make the center canvas match their assigned target card wins!
+                <strong>2 Players (Versus):</strong> Players take turns clicking tiles. Player 1 and Player 2 are assigned target cards. The first player to make the central canvas match their assigned target card wins!
               </li>
               <li>
-                <strong>Custom Image Sets:</strong> Click <em>Upload Custom Images</em> to play with 8+ photos from your own computer.
+                <strong>🌱 Easy vs 🔥 Hard Difficulty:</strong> In <em>Easy Mode</em>, exactly 2 cards are initially XORed into the center. In <em>Hard Mode</em>, 3 to 8 cards are XORed.
               </li>
+              <li>
+                <strong>🔍 Explore Mode:</strong> Turn Explore Mode ON to freely experiment with XOR tile combinations without triggering endgame popups. Turning Explore OFF restarts the puzzle.
+              </li>
+              <li>
+                <strong>📱 Photos & Custom Groups:</strong> Upload 8+ photos from your device or camera roll to play with your own custom image sets.
+              </li>
+            </ul>
+          </div>
+
+          {/* Scoring & Ratings */}
+          <div className="help-section">
+            <h3>⭐ Score Ratings (1 Player)</h3>
+            <p>
+              Your score is evaluated based on how close your total moves are to the minimum <em>Optimal Score</em>:
+            </p>
+            <ul>
+              <li><strong>Perfect Score:</strong> Solved in the minimal optimal moves.</li>
+              <li><strong>Great:</strong> Solved within 2 moves over optimal.</li>
+              <li><strong>Good:</strong> Solved within 4 moves over optimal.</li>
             </ul>
           </div>
 

@@ -14,7 +14,21 @@ export const WinModal: React.FC<WinModalProps> = ({
 }) => {
   console.log('🚨 [ImageNim] WinModal mounted / rendering with stats:', stats);
   const is2Player = !!stats.winner;
-  const isPerfect = !is2Player && stats.moves === stats.perfectScore;
+  const diff = stats.moves - stats.perfectScore;
+  const isPerfect = !is2Player && diff <= 0;
+
+  const getSinglePlayerMessage = () => {
+    if (diff <= 0) {
+      return `Congratulations! You solved the puzzle in the optimal ${stats.perfectScore} moves!`;
+    }
+    if (diff <= 2) {
+      return `Great! You solved it in ${stats.moves} moves (Optimal score was ${stats.perfectScore}).`;
+    }
+    if (diff <= 4) {
+      return `Good! You solved it in ${stats.moves} moves (Optimal score was ${stats.perfectScore}).`;
+    }
+    return `You solved it in ${stats.moves} moves (Optimal score was ${stats.perfectScore}).`;
+  };
 
   return (
     <div className="modal-overlay" id="win-modal-overlay">
@@ -30,9 +44,7 @@ export const WinModal: React.FC<WinModalProps> = ({
         <p style={{ color: 'var(--text-muted)' }}>
           {is2Player
             ? `Congratulations! ${stats.winner} matched their target image in ${stats.moves} total moves!`
-            : isPerfect
-            ? `Congratulations! You solved the puzzle in the optimal ${stats.perfectScore} moves!`
-            : `Great job! You solved it in ${stats.moves} moves (Optimal score was ${stats.perfectScore}).`}
+            : getSinglePlayerMessage()}
         </p>
 
         <div className="modal-stats-grid">

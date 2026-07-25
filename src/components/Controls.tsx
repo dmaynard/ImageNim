@@ -1,15 +1,19 @@
 import React, { ChangeEvent } from 'react';
-import { GameMode, Player } from '../types';
+import { PlayMode, Difficulty, Player } from '../types';
 
 interface ControlsProps {
-  gameMode: GameMode;
+  playMode: PlayMode;
+  difficulty: Difficulty;
+  exploreMode: boolean;
   hintMode: boolean;
   currentTurn?: Player;
   categories: { id: string; name: string }[];
   selectedCategoryId: string;
   onNewGame: () => void;
   onReplay: () => void;
-  onGameModeChange: (mode: GameMode) => void;
+  onPlayModeChange: (mode: PlayMode) => void;
+  onDifficultyToggle: () => void;
+  onExploreToggle: () => void;
   onHintToggle: () => void;
   onCategoryChange: (categoryId: string) => void;
   onCustomImagesUpload: (files: FileList) => void;
@@ -17,14 +21,18 @@ interface ControlsProps {
 }
 
 export const Controls: React.FC<ControlsProps> = ({
-  gameMode,
+  playMode,
+  difficulty,
+  exploreMode,
   hintMode,
   currentTurn,
   categories,
   selectedCategoryId,
   onNewGame,
   onReplay,
-  onGameModeChange,
+  onPlayModeChange,
+  onDifficultyToggle,
+  onExploreToggle,
   onHintToggle,
   onCategoryChange,
   onCustomImagesUpload,
@@ -57,13 +65,31 @@ export const Controls: React.FC<ControlsProps> = ({
 
         <select
           className="select-input"
-          value={gameMode}
-          onChange={e => onGameModeChange(e.target.value as GameMode)}
-          id="select-difficulty"
+          value={playMode}
+          onChange={e => onPlayModeChange(e.target.value as PlayMode)}
+          id="select-play-mode"
         >
-          <option value="EASY">1 Player (Solitaire): Clear Center</option>
-          <option value="HARD">2 Players (Versus): Match Assigned Target</option>
+          <option value="SOLO">1 Player (Solitaire): Clear Center</option>
+          <option value="VERSUS">2 Players (Versus): Match Assigned Target</option>
         </select>
+
+        <button
+          className={`btn btn-toggle ${difficulty === 'HARD' ? 'active' : ''}`}
+          onClick={onDifficultyToggle}
+          id="btn-difficulty-toggle"
+          title={difficulty === 'EASY' ? 'Easy Mode: 2 initial cards XORed into center' : 'Hard Mode: 3 to 8 initial cards XORed into center'}
+        >
+          {difficulty === 'EASY' ? '🌱 Mode: Easy (2 Cards)' : '🔥 Mode: Hard (3-8 Cards)'}
+        </button>
+
+        <button
+          className={`btn btn-toggle ${exploreMode ? 'active' : ''}`}
+          onClick={onExploreToggle}
+          id="btn-explore-toggle"
+          title="Explore Mode: No win condition, freely experiment with XOR tiles. Turning OFF resets game."
+        >
+          🔍 Explore: {exploreMode ? 'ON' : 'OFF'}
+        </button>
 
         <button
           className={`btn btn-toggle ${hintMode ? 'active' : ''}`}
@@ -73,7 +99,7 @@ export const Controls: React.FC<ControlsProps> = ({
           💡 Hints: {hintMode ? 'ON' : 'OFF'}
         </button>
 
-        {gameMode === 'HARD' && currentTurn && (
+        {playMode === 'VERSUS' && currentTurn && (
           <div className="turn-badge" id="player-turn-indicator">
             👉 Turn: <strong style={{ color: currentTurn === 'Player 1' ? '#00f2fe' : '#ff007f' }}>{currentTurn}</strong>
           </div>

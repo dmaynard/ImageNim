@@ -1,13 +1,13 @@
 import React from 'react';
 import { PictureCard } from './PictureCard';
 import { TargetCanvas } from './TargetCanvas';
-import { ImageItem, GameMode, Player } from '../types';
+import { ImageItem, PlayMode, Player } from '../types';
 
 interface GameGridProps {
   outerImages: ImageItem[];
   toggledMask: number;
   hintMode: boolean;
-  gameMode: GameMode;
+  playMode: PlayMode;
   player1TargetIndex?: number;
   player2TargetIndex?: number;
   currentTurn?: Player;
@@ -24,7 +24,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
   outerImages,
   toggledMask,
   hintMode,
-  gameMode,
+  playMode,
   player1TargetIndex,
   player2TargetIndex,
   currentTurn,
@@ -44,7 +44,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
           targetBuffer={targetBuffer}
           width={canvasWidth}
           height={canvasHeight}
-          gameMode={gameMode}
+          playMode={playMode}
           isVictory={isVictoryPause}
           winningPlayer={winningPlayer}
         />
@@ -58,7 +58,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
     const isIncluded = (toggledMask & (1 << pictureIndex)) !== 0;
 
     let targetLabel: string | null = null;
-    if (gameMode === 'HARD') {
+    if (playMode === 'VERSUS') {
       if (pictureIndex === player1TargetIndex) {
         targetLabel = 'P1 Target';
       } else if (pictureIndex === player2TargetIndex) {
@@ -88,7 +88,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
   const gridWrapperClasses = [
     'grid-wrapper',
     isVictoryPause ? 'victory-active' : '',
-    gameMode === 'HARD' ? (currentTurn === 'Player 1' ? 'turn-p1-active' : 'turn-p2-active') : ''
+    playMode === 'VERSUS' ? (currentTurn === 'Player 1' ? 'turn-p1-active' : 'turn-p2-active') : ''
   ].filter(Boolean).join(' ');
 
   return (

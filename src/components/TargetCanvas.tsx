@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { Player } from '../types';
+import { PlayMode, Player } from '../types';
 
 interface TargetCanvasProps {
   targetBuffer: Uint8Array | null;
   width: number;
   height: number;
-  gameMode: 'EASY' | 'HARD';
+  playMode?: PlayMode;
   isVictory?: boolean;
   winningPlayer?: Player;
 }
