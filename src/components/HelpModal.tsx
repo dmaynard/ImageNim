@@ -44,7 +44,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
                 <strong>2 Players (Versus):</strong> Players take turns clicking tiles. Player 1 and Player 2 are assigned target cards. The first player to make the central canvas match their assigned target card wins!
               </li>
               <li>
-                <strong>🌱 Easy vs 🔥 Hard Difficulty:</strong> In <em>Easy Mode</em>, exactly 2 cards are initially XORed into the center. In <em>Hard Mode</em>, 3 to 8 cards are XORed.
+                <strong>🌱 Easy vs 🔥 Hard Difficulty:</strong> In <em>Easy Mode</em>, 2 or 3 cards are initially XORed into the center. In <em>Hard Mode</em>, 3 to 8 cards are XORed.
               </li>
               <li>
                 <strong>🔍 Explore Mode:</strong> Turn Explore Mode ON to freely experiment with XOR tile combinations without triggering endgame popups. Turning Explore OFF restarts the puzzle.

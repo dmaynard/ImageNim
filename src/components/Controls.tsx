@@ -77,9 +77,9 @@ export const Controls: React.FC<ControlsProps> = ({
           className={`btn btn-toggle ${difficulty === 'HARD' ? 'active' : ''}`}
           onClick={onDifficultyToggle}
           id="btn-difficulty-toggle"
-          title={difficulty === 'EASY' ? 'Easy Mode: 2 initial cards XORed into center' : 'Hard Mode: 3 to 8 initial cards XORed into center'}
+          title={difficulty === 'EASY' ? 'Easy Mode: 2 or 3 initial cards XORed into center' : 'Hard Mode: 3 to 8 initial cards XORed into center'}
         >
-          {difficulty === 'EASY' ? '🌱 Mode: Easy (2 Cards)' : '🔥 Mode: Hard (3-8 Cards)'}
+          {difficulty === 'EASY' ? '🌱 Mode: Easy (2-3 Cards)' : '🔥 Mode: Hard (3-8 Cards)'}
         </button>
 
         <button

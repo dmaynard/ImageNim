@@ -34,7 +34,7 @@ export const App: React.FC = () => {
   const [outerDisplayItems, setOuterDisplayItems] = useState<ImageItem[]>([]);
   const [outerLoadedImages, setOuterLoadedImages] = useState<LoadedImageData[]>([]);
 
-  // Play Mode (1P vs 2P) & Difficulty (Easy: 2 cards, Hard: 3-8 cards)
+  // Play Mode (1P vs 2P) & Difficulty (Easy: 2-3 cards, Hard: 3-8 cards)
   const [playMode, setPlayMode] = useState<PlayMode>('SOLO');
   const [difficulty, setDifficulty] = useState<Difficulty>('EASY');
   const [player1TargetIndex, setPlayer1TargetIndex] = useState<number>(0);
@@ -172,9 +172,9 @@ export const App: React.FC = () => {
     if (replayingMask !== undefined) {
       mask = replayingMask;
     } else {
-      // Easy mode: exactly 2 cards XORed; Hard mode: 3 to 8 cards XORed
+      // Easy mode: 2 or 3 cards XORed; Hard mode: 3 to 8 cards XORed
       const minCards = activeDiff === 'EASY' ? 2 : 3;
-      const maxCards = activeDiff === 'EASY' ? 2 : 8;
+      const maxCards = activeDiff === 'EASY' ? 3 : 8;
       const randomSeed = BigInt(Math.floor(Date.now() + Math.random() * 1000000));
       mask = generate_initial_puzzle_mask(8, minCards, maxCards, randomSeed);
     }
