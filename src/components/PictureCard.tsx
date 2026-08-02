@@ -55,6 +55,30 @@ export const PictureCard: React.FC<PictureCardProps> = ({
       )}
 
       <img src={image.url} alt={image.name} loading="eager" />
+
+      {image.author && (
+        <div className="card-attribution" title={`Photo by ${image.author} on Unsplash`}>
+          Photo by{' '}
+          <a
+            href={image.authorUrl || 'https://unsplash.com'}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+          >
+            {image.author}
+          </a>{' '}
+          on{' '}
+          <a
+            href="https://unsplash.com?utm_source=imagenim&utm_medium=referral"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+          >
+            Unsplash
+          </a>
+        </div>
+      )}
+
       <div className="card-status-indicator" />
     </div>
   );
