@@ -8,6 +8,8 @@ export interface ImageItem {
   id: string;
   name: string;
   url: string;
+  author?: string;
+  authorUrl?: string;
   imageData?: ImageData;
 }
 
@@ -15,6 +17,7 @@ export interface ImageCategory {
   id: string;
   name: string;
   description: string;
+  type?: 'local' | 'unsplash' | 'custom';
   images: ImageItem[];
 }
 

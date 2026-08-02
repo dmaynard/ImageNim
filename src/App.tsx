@@ -373,6 +373,32 @@ export const App: React.FC = () => {
     startNewGame(undefined, customCategory.id, undefined, customCategory);
   };
 
+  // Import Unsplash Group JSON Handler
+  const handleGroupJsonUpload = async (file: File) => {
+    try {
+      const text = await file.text();
+      const jsonData = JSON.parse(text) as ImageCategory;
+      if (!jsonData.images || !Array.isArray(jsonData.images) || jsonData.images.length < 8) {
+        alert(`The JSON group must contain at least 8 images (found ${jsonData.images?.length || 0}).`);
+        return;
+      }
+
+      const importedCategory: ImageCategory = {
+        id: jsonData.id || `json-${Date.now()}`,
+        name: jsonData.name || file.name.replace(/\.json$/i, ''),
+        description: jsonData.description || 'Imported Unsplash JSON group',
+        type: jsonData.type || 'unsplash',
+        images: jsonData.images
+      };
+
+      setCategories(prev => [importedCategory, ...prev]);
+      setSelectedCategoryId(importedCategory.id);
+      startNewGame(undefined, importedCategory.id, undefined, importedCategory);
+    } catch (e: any) {
+      alert(`Failed to parse JSON group file: ${e.message}`);
+    }
+  };
+
   return (
     <div className="app-container">
       {/* App Header */}
@@ -417,6 +443,7 @@ export const App: React.FC = () => {
         onHintToggle={() => setHintMode(!hintMode)}
         onCategoryChange={handleCategoryChange}
         onCustomImagesUpload={handleCustomUpload}
+        onGroupJsonUpload={handleGroupJsonUpload}
         onOpenHelp={() => setIsHelpOpen(true)}
       />
 

@@ -17,6 +17,7 @@ interface ControlsProps {
   onHintToggle: () => void;
   onCategoryChange: (categoryId: string) => void;
   onCustomImagesUpload: (files: FileList) => void;
+  onGroupJsonUpload?: (file: File) => void;
   onOpenHelp: () => void;
 }
 
@@ -36,11 +37,18 @@ export const Controls: React.FC<ControlsProps> = ({
   onHintToggle,
   onCategoryChange,
   onCustomImagesUpload,
+  onGroupJsonUpload,
   onOpenHelp
 }) => {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       onCustomImagesUpload(e.target.files);
+    }
+  };
+
+  const handleJsonFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0 && onGroupJsonUpload) {
+      onGroupJsonUpload(e.target.files[0]);
     }
   };
 
@@ -130,7 +138,7 @@ export const Controls: React.FC<ControlsProps> = ({
         </select>
 
         <label className="btn btn-primary" htmlFor="custom-image-upload" id="label-upload" title="Select 8 or more photos from iPhone Photos App or computer">
-          📱 Create Group from Photos
+          📱 Photos
           <input
             id="custom-image-upload"
             type="file"
@@ -138,6 +146,17 @@ export const Controls: React.FC<ControlsProps> = ({
             accept="image/*,image/heic,image/heif"
             style={{ display: 'none' }}
             onChange={handleFileChange}
+          />
+        </label>
+
+        <label className="btn" htmlFor="json-group-upload" id="label-upload-json" title="Import a custom Unsplash Group JSON file">
+          📄 Import JSON Group
+          <input
+            id="json-group-upload"
+            type="file"
+            accept=".json,application/json"
+            style={{ display: 'none' }}
+            onChange={handleJsonFileChange}
           />
         </label>
       </div>

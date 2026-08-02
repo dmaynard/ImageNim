@@ -32,8 +32,29 @@ export async function loadImageAsBuffer(
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, targetWidth, targetHeight);
 
-            // Draw image scaled to fit target dimensions
-            ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+            // Compute center-crop source rectangle to maintain aspect ratio
+            const naturalW = img.naturalWidth || targetWidth;
+            const naturalH = img.naturalHeight || targetHeight;
+            const targetRatio = targetWidth / targetHeight;
+            const imgRatio = naturalW / naturalH;
+
+            let sx = 0;
+            let sy = 0;
+            let sWidth = naturalW;
+            let sHeight = naturalH;
+
+            if (imgRatio > targetRatio) {
+              // Image is wider: crop horizontal edges
+              sWidth = naturalH * targetRatio;
+              sx = (naturalW - sWidth) / 2;
+            } else if (imgRatio < targetRatio) {
+              // Image is taller: crop vertical edges
+              sHeight = naturalW / targetRatio;
+              sy = (naturalH - sHeight) / 2;
+            }
+
+            // Draw image scaled and center-cropped to target dimensions
+            ctx.drawImage(img, sx, sy, sWidth, sHeight, 0, 0, targetWidth, targetHeight);
 
             // Get ImageData and copy bytes
             const imgData = ctx.getImageData(0, 0, targetWidth, targetHeight);

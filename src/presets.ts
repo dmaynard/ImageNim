@@ -578,5 +578,83 @@ export const PRESET_CATEGORIES: ImageCategory[] = [
         "url": "/images/zion/STC_4387.JPG"
       }
     ]
+  },
+  {
+    "id": "unsplash-astronomy",
+    "name": "Unsplash Astronomy (Indirect)",
+    "description": "High resolution astronomical and galaxy photography dynamically fetched from Unsplash",
+    "type": "unsplash",
+    "images": [
+      {
+        "id": "unsplash-astro-1",
+        "name": "Milkyway over Mountains",
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=600&q=80",
+        "author": "Vincent van Zalinge",
+        "authorUrl": "https://unsplash.com/@vincentvanzalinge"
+      },
+      {
+        "id": "unsplash-astro-2",
+        "name": "Cosmic Nebula Grid",
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
+        "author": "NASA",
+        "authorUrl": "https://unsplash.com/@nasa"
+      },
+      {
+        "id": "unsplash-astro-3",
+        "name": "Deep Space Galaxy",
+        "url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+        "author": "Bryan Goff",
+        "authorUrl": "https://unsplash.com/@bryangoffphoto"
+      },
+      {
+        "id": "unsplash-astro-4",
+        "name": "Earth Orbit View",
+        "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=600&q=80",
+        "author": "NASA",
+        "authorUrl": "https://unsplash.com/@nasa"
+      },
+      {
+        "id": "unsplash-astro-5",
+        "name": "Aurora Borealis Lights",
+        "url": "https://images.unsplash.com/photo-1543722530-d2c3201371e7?auto=format&fit=crop&w=600&q=80",
+        "author": "Jonatan Pie",
+        "authorUrl": "https://unsplash.com/@jonatanpie"
+      },
+      {
+        "id": "unsplash-astro-6",
+        "name": "Full Moon Horizon",
+        "url": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=600&q=80",
+        "author": "NASA",
+        "authorUrl": "https://unsplash.com/@nasa"
+      },
+      {
+        "id": "unsplash-astro-7",
+        "name": "Solar Flare Corona",
+        "url": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&w=600&q=80",
+        "author": "NASA",
+        "authorUrl": "https://unsplash.com/@nasa"
+      },
+      {
+        "id": "unsplash-astro-8",
+        "name": "Starlight Pine Forest",
+        "url": "https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?auto=format&fit=crop&w=600&q=80",
+        "author": "Ryan Hutton",
+        "authorUrl": "https://unsplash.com/@ryanhutton"
+      },
+      {
+        "id": "unsplash-astro-9",
+        "name": "Pink Cosmic Nebula",
+        "url": "https://images.unsplash.com/photo-1538370965046-79c0d6907d47?auto=format&fit=crop&w=600&q=80",
+        "author": "NASA",
+        "authorUrl": "https://unsplash.com/@nasa"
+      },
+      {
+        "id": "unsplash-astro-10",
+        "name": "Star Trails & Galaxy Glow",
+        "url": "https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&w=600&q=80",
+        "author": "NASA",
+        "authorUrl": "https://unsplash.com/@nasa"
+      }
+    ]
   }
 ];
