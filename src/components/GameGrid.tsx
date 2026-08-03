@@ -7,6 +7,7 @@ interface GameGridProps {
   outerImages: ImageItem[];
   toggledMask: number;
   hintMode: boolean;
+  showPhotoCredits?: boolean;
   playMode: PlayMode;
   player1TargetIndex?: number;
   player2TargetIndex?: number;
@@ -24,6 +25,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
   outerImages,
   toggledMask,
   hintMode,
+  showPhotoCredits = true,
   playMode,
   player1TargetIndex,
   player2TargetIndex,
@@ -76,6 +78,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
         image={img}
         isIncluded={isIncluded}
         isHinted={hintMode && !isVictoryPause}
+        showPhotoCredits={showPhotoCredits}
         playerTargetLabel={targetLabel}
         isWinningTarget={isWinningTarget}
         winningPlayer={winningPlayer}

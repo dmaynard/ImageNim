@@ -44,6 +44,7 @@ export const App: React.FC = () => {
   // Game Settings & State
   const [exploreMode, setExploreMode] = useState<boolean>(false);
   const [hintMode, setHintMode] = useState<boolean>(false);
+  const [showPhotoCredits, setShowPhotoCredits] = useState<boolean>(true);
   const [initialPuzzleMask, setInitialPuzzleMask] = useState<number>(0);
   const [toggledMask, setToggledMask] = useState<number>(0);
   const [targetBuffer, setTargetBuffer] = useState<Uint8Array | null>(null);
@@ -373,32 +374,6 @@ export const App: React.FC = () => {
     startNewGame(undefined, customCategory.id, undefined, customCategory);
   };
 
-  // Import Unsplash Group JSON Handler
-  const handleGroupJsonUpload = async (file: File) => {
-    try {
-      const text = await file.text();
-      const jsonData = JSON.parse(text) as ImageCategory;
-      if (!jsonData.images || !Array.isArray(jsonData.images) || jsonData.images.length < 8) {
-        alert(`The JSON group must contain at least 8 images (found ${jsonData.images?.length || 0}).`);
-        return;
-      }
-
-      const importedCategory: ImageCategory = {
-        id: jsonData.id || `json-${Date.now()}`,
-        name: jsonData.name || file.name.replace(/\.json$/i, ''),
-        description: jsonData.description || 'Imported Unsplash JSON group',
-        type: jsonData.type || 'unsplash',
-        images: jsonData.images
-      };
-
-      setCategories(prev => [importedCategory, ...prev]);
-      setSelectedCategoryId(importedCategory.id);
-      startNewGame(undefined, importedCategory.id, undefined, importedCategory);
-    } catch (e: any) {
-      alert(`Failed to parse JSON group file: ${e.message}`);
-    }
-  };
-
   return (
     <div className="app-container">
       {/* App Header */}
@@ -432,6 +407,7 @@ export const App: React.FC = () => {
         difficulty={difficulty}
         exploreMode={exploreMode}
         hintMode={hintMode}
+        showPhotoCredits={showPhotoCredits}
         currentTurn={currentTurn}
         categories={categories.map(c => ({ id: c.id, name: c.name }))}
         selectedCategoryId={selectedCategoryId}
@@ -441,9 +417,9 @@ export const App: React.FC = () => {
         onDifficultyToggle={handleDifficultyToggle}
         onExploreToggle={handleExploreToggle}
         onHintToggle={() => setHintMode(!hintMode)}
+        onPhotoCreditsToggle={() => setShowPhotoCredits(!showPhotoCredits)}
         onCategoryChange={handleCategoryChange}
         onCustomImagesUpload={handleCustomUpload}
-        onGroupJsonUpload={handleGroupJsonUpload}
         onOpenHelp={() => setIsHelpOpen(true)}
       />
 
@@ -476,6 +452,7 @@ export const App: React.FC = () => {
           outerImages={outerDisplayItems}
           toggledMask={toggledMask}
           hintMode={hintMode}
+          showPhotoCredits={showPhotoCredits}
           playMode={playMode}
           player1TargetIndex={player1TargetIndex}
           player2TargetIndex={player2TargetIndex}
