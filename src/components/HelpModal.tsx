@@ -49,9 +49,6 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
               <li>
                 <strong>🔍 Explore Mode:</strong> Turn Explore Mode ON to freely experiment with XOR tile combinations without triggering endgame popups. Turning Explore OFF restarts the puzzle.
               </li>
-              <li>
-                <strong>📱 Photos & Custom Groups:</strong> Upload 8+ photos from your device or camera roll to play with your own custom image sets.
-              </li>
             </ul>
           </div>
 

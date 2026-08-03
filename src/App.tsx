@@ -336,44 +336,6 @@ export const App: React.FC = () => {
     startNewGame(initialPuzzleMask);
   };
 
-  // Custom Image Upload Handler (iPhone Photos & Desktop Files)
-  const handleCustomUpload = async (files: FileList) => {
-    if (files.length < 8) {
-      alert(`Please select at least 8 photos from your Photos app (you selected ${files.length}).`);
-      return;
-    }
-
-    const customImages: ImageItem[] = [];
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const url = URL.createObjectURL(file);
-      const fileName = file.name ? file.name.replace(/\.[^/.]+$/, '') : `Photo #${i + 1}`;
-      customImages.push({
-        id: `custom-${i}-${Date.now()}`,
-        name: fileName || `Photo #${i + 1}`,
-        url
-      });
-    }
-
-    // Prompt for group name or default to My Photos
-    const defaultGroupName = `My Photos (${customImages.length} items)`;
-    const groupName = prompt(
-      `Selected ${customImages.length} photos! Enter a name for this custom photo group:`,
-      defaultGroupName
-    ) || defaultGroupName;
-
-    const customCategory: ImageCategory = {
-      id: `custom-${Date.now()}`,
-      name: groupName,
-      description: 'User uploaded custom image set',
-      images: customImages
-    };
-
-    setCategories(prev => [customCategory, ...prev]);
-    setSelectedCategoryId(customCategory.id);
-    startNewGame(undefined, customCategory.id, undefined, customCategory);
-  };
-
   return (
     <div className="app-container">
       {/* App Header */}
@@ -419,7 +381,6 @@ export const App: React.FC = () => {
         onHintToggle={() => setHintMode(!hintMode)}
         onPhotoCreditsToggle={() => setShowPhotoCredits(!showPhotoCredits)}
         onCategoryChange={handleCategoryChange}
-        onCustomImagesUpload={handleCustomUpload}
         onOpenHelp={() => setIsHelpOpen(true)}
       />
 

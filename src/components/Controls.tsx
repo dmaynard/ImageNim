@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { PlayMode, Difficulty, Player } from '../types';
 
 interface ControlsProps {
@@ -18,7 +18,6 @@ interface ControlsProps {
   onHintToggle: () => void;
   onPhotoCreditsToggle: () => void;
   onCategoryChange: (categoryId: string) => void;
-  onCustomImagesUpload: (files: FileList) => void;
   onOpenHelp: () => void;
 }
 
@@ -39,15 +38,8 @@ export const Controls: React.FC<ControlsProps> = ({
   onHintToggle,
   onPhotoCreditsToggle,
   onCategoryChange,
-  onCustomImagesUpload,
   onOpenHelp
 }) => {
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      onCustomImagesUpload(e.target.files);
-    }
-  };
-
   return (
     <div className="controls-toolbar" id="controls-toolbar">
       <div className="button-group">
@@ -141,18 +133,6 @@ export const Controls: React.FC<ControlsProps> = ({
             </option>
           ))}
         </select>
-
-        <label className="btn btn-primary" htmlFor="custom-image-upload" id="label-upload" title="Select 8 or more photos from iPhone Photos App or computer">
-          📱 Photos
-          <input
-            id="custom-image-upload"
-            type="file"
-            multiple
-            accept="image/*,image/heic,image/heif"
-            style={{ display: 'none' }}
-            onChange={handleFileChange}
-          />
-        </label>
       </div>
     </div>
   );
