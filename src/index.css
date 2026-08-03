@@ -211,10 +211,10 @@ body {
 }
 
 .btn-toggle.active {
-  background: rgba(255, 0, 127, 0.2);
-  border-color: var(--accent-pink);
-  color: #ff66b2;
-  box-shadow: 0 0 12px rgba(255, 0, 127, 0.4);
+  background: rgba(0, 255, 135, 0.18);
+  border-color: var(--accent-green);
+  color: #00ff87;
+  box-shadow: 0 0 12px rgba(0, 255, 135, 0.4);
 }
 
 .select-input {
