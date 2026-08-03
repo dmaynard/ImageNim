@@ -42,8 +42,6 @@ export const PictureCard: React.FC<PictureCardProps> = ({
       onClick={onClick}
       id={`picture-card-${index}`}
     >
-      <div className="card-badge">#{index + 1}</div>
-
       {playerTargetLabel && (
         <div className={`card-player-target ${playerTargetLabel === 'P1 Target' ? 'p1' : 'p2'}`}>
           {playerTargetLabel}
