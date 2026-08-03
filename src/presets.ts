@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { ImageCategory } from './types';
 
 export const PRESET_CATEGORIES: ImageCategory[] = [
@@ -658,3 +659,34 @@ export const PRESET_CATEGORIES: ImageCategory[] = [
     ]
   }
 ];
+
+// Compile-time dynamic glob import of all JSON group files in src/groups/
+const jsonGroupModules = import.meta.glob('./groups/*.json', { eager: true }) as Record<string, any>;
+
+const COMPILED_JSON_GROUPS: ImageCategory[] = Object.entries(jsonGroupModules).map(([filePath, moduleContent]) => {
+  const fileName = filePath.split('/').pop()?.replace(/\.json$/i, '') || '';
+  
+  // Remove "unsplash-" or "unsplash_" or "unsplash" prefix
+  const groupKeyWithoutUnsplash = fileName.replace(/^unsplash[-_]?/i, '');
+  
+  // Format name (e.g. "yosemite-valley" -> "Yosemite Valley")
+  const formattedTitle = groupKeyWithoutUnsplash
+    .split(/[-_]+/)
+    .filter(Boolean)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ') || fileName;
+
+  const jsonData = moduleContent.default || moduleContent;
+
+  return {
+    id: jsonData.id || fileName,
+    name: formattedTitle,
+    description: jsonData.description || `${formattedTitle} image group`,
+    type: jsonData.type || 'unsplash',
+    images: jsonData.images || []
+  };
+});
+
+// Append compile-time imported JSON groups to the preset categories list
+PRESET_CATEGORIES.push(...COMPILED_JSON_GROUPS);
+
