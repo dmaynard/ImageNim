@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { ImageCategory } from './types';
 
 export const PRESET_CATEGORIES: ImageCategory[] = [
@@ -580,3 +581,51 @@ export const PRESET_CATEGORIES: ImageCategory[] = [
     ]
   }
 ];
+
+// Ensure all native/local preset images have "David Maynard" as credit
+PRESET_CATEGORIES.forEach(category => {
+  if (!category.type || category.type === 'local') {
+    category.images.forEach(img => {
+      if (!img.author) {
+        img.author = 'David Maynard';
+      }
+    });
+  }
+});
+
+// Compile-time dynamic glob import of all JSON group files in src/groups/
+const jsonGroupModules = import.meta.glob('./groups/*.json', { eager: true }) as Record<string, any>;
+
+const COMPILED_JSON_GROUPS: ImageCategory[] = Object.entries(jsonGroupModules).map(([filePath, moduleContent]) => {
+  const fileName = filePath.split('/').pop()?.replace(/\.json$/i, '') || '';
+  
+  // Remove "unsplash-" or "unsplash_" or "unsplash" prefix
+  const groupKeyWithoutUnsplash = fileName.replace(/^unsplash[-_]?/i, '');
+  
+  // Format name (e.g. "yosemite-valley" -> "Yosemite Valley")
+  const formattedTitle = groupKeyWithoutUnsplash
+    .split(/[-_]+/)
+    .filter(Boolean)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ') || fileName;
+
+  const jsonData = moduleContent.default || moduleContent;
+
+  const images = (jsonData.images || []).map((img: any) => ({
+    ...img,
+    author: img.author || (jsonData.type === 'local' ? 'David Maynard' : undefined)
+  }));
+
+  return {
+    id: jsonData.id || fileName,
+    name: formattedTitle,
+    description: jsonData.description || `${formattedTitle} image group`,
+    type: jsonData.type || 'unsplash',
+    images
+  };
+});
+
+// Append compile-time imported JSON groups to the preset categories list
+PRESET_CATEGORIES.push(...COMPILED_JSON_GROUPS);
+
+

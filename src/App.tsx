@@ -44,6 +44,7 @@ export const App: React.FC = () => {
   // Game Settings & State
   const [exploreMode, setExploreMode] = useState<boolean>(false);
   const [hintMode, setHintMode] = useState<boolean>(false);
+  const [showPhotoCredits, setShowPhotoCredits] = useState<boolean>(true);
   const [initialPuzzleMask, setInitialPuzzleMask] = useState<number>(0);
   const [toggledMask, setToggledMask] = useState<number>(0);
   const [targetBuffer, setTargetBuffer] = useState<Uint8Array | null>(null);
@@ -335,44 +336,6 @@ export const App: React.FC = () => {
     startNewGame(initialPuzzleMask);
   };
 
-  // Custom Image Upload Handler (iPhone Photos & Desktop Files)
-  const handleCustomUpload = async (files: FileList) => {
-    if (files.length < 8) {
-      alert(`Please select at least 8 photos from your Photos app (you selected ${files.length}).`);
-      return;
-    }
-
-    const customImages: ImageItem[] = [];
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const url = URL.createObjectURL(file);
-      const fileName = file.name ? file.name.replace(/\.[^/.]+$/, '') : `Photo #${i + 1}`;
-      customImages.push({
-        id: `custom-${i}-${Date.now()}`,
-        name: fileName || `Photo #${i + 1}`,
-        url
-      });
-    }
-
-    // Prompt for group name or default to My Photos
-    const defaultGroupName = `My Photos (${customImages.length} items)`;
-    const groupName = prompt(
-      `Selected ${customImages.length} photos! Enter a name for this custom photo group:`,
-      defaultGroupName
-    ) || defaultGroupName;
-
-    const customCategory: ImageCategory = {
-      id: `custom-${Date.now()}`,
-      name: groupName,
-      description: 'User uploaded custom image set',
-      images: customImages
-    };
-
-    setCategories(prev => [customCategory, ...prev]);
-    setSelectedCategoryId(customCategory.id);
-    startNewGame(undefined, customCategory.id, undefined, customCategory);
-  };
-
   return (
     <div className="app-container">
       {/* App Header */}
@@ -406,6 +369,7 @@ export const App: React.FC = () => {
         difficulty={difficulty}
         exploreMode={exploreMode}
         hintMode={hintMode}
+        showPhotoCredits={showPhotoCredits}
         currentTurn={currentTurn}
         categories={categories.map(c => ({ id: c.id, name: c.name }))}
         selectedCategoryId={selectedCategoryId}
@@ -415,8 +379,8 @@ export const App: React.FC = () => {
         onDifficultyToggle={handleDifficultyToggle}
         onExploreToggle={handleExploreToggle}
         onHintToggle={() => setHintMode(!hintMode)}
+        onPhotoCreditsToggle={() => setShowPhotoCredits(!showPhotoCredits)}
         onCategoryChange={handleCategoryChange}
-        onCustomImagesUpload={handleCustomUpload}
         onOpenHelp={() => setIsHelpOpen(true)}
       />
 
@@ -449,6 +413,7 @@ export const App: React.FC = () => {
           outerImages={outerDisplayItems}
           toggledMask={toggledMask}
           hintMode={hintMode}
+          showPhotoCredits={showPhotoCredits}
           playMode={playMode}
           player1TargetIndex={player1TargetIndex}
           player2TargetIndex={player2TargetIndex}

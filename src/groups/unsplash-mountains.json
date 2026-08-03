@@ -1,0 +1,64 @@
+{
+  "id": "unsplash-sample-mountains",
+  "name": "Sample Mountains",
+  "description": "High resolution mountain photography",
+  "type": "unsplash",
+  "images": [
+    {
+      "id": "m-1",
+      "name": "Mountain Peak Sunset",
+      "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80",
+      "author": "Kal visual",
+      "authorUrl": "https://unsplash.com/@kalvisual"
+    },
+    {
+      "id": "m-2",
+      "name": "Snowy Alps",
+      "url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80",
+      "author": "Samuel Ferrara",
+      "authorUrl": "https://unsplash.com/@samuelferrara"
+    },
+    {
+      "id": "m-3",
+      "name": "Rocky Mountain Lake",
+      "url": "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=600&q=80",
+      "author": "John Towner",
+      "authorUrl": "https://unsplash.com/@johntowner"
+    },
+    {
+      "id": "m-4",
+      "name": "Foggy Mountain Range",
+      "url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80",
+      "author": "Sergey Pesterev",
+      "authorUrl": "https://unsplash.com/@pesterev"
+    },
+    {
+      "id": "m-5",
+      "name": "Green Valley Peaks",
+      "url": "https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=600&q=80",
+      "author": "Kalen Emsley",
+      "authorUrl": "https://unsplash.com/@kalenemsley"
+    },
+    {
+      "id": "m-6",
+      "name": "Majestic Mountain Ridge",
+      "url": "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=600&q=80",
+      "author": "Tim Trautmann",
+      "authorUrl": "https://unsplash.com/@timtrautmann"
+    },
+    {
+      "id": "m-7",
+      "name": "Sunset Peak Horizon",
+      "url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80",
+      "author": "Benjamin Voros",
+      "authorUrl": "https://unsplash.com/@benjaminvoros"
+    },
+    {
+      "id": "m-8",
+      "name": "Blue Mountain Mist",
+      "url": "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?auto=format&fit=crop&w=600&q=80",
+      "author": "Kalen Emsley",
+      "authorUrl": "https://unsplash.com/@kalenemsley"
+    }
+  ]
+}

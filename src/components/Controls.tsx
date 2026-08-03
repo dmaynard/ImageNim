@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { PlayMode, Difficulty, Player } from '../types';
 
 interface ControlsProps {
@@ -6,6 +6,7 @@ interface ControlsProps {
   difficulty: Difficulty;
   exploreMode: boolean;
   hintMode: boolean;
+  showPhotoCredits: boolean;
   currentTurn?: Player;
   categories: { id: string; name: string }[];
   selectedCategoryId: string;
@@ -15,8 +16,8 @@ interface ControlsProps {
   onDifficultyToggle: () => void;
   onExploreToggle: () => void;
   onHintToggle: () => void;
+  onPhotoCreditsToggle: () => void;
   onCategoryChange: (categoryId: string) => void;
-  onCustomImagesUpload: (files: FileList) => void;
   onOpenHelp: () => void;
 }
 
@@ -25,6 +26,7 @@ export const Controls: React.FC<ControlsProps> = ({
   difficulty,
   exploreMode,
   hintMode,
+  showPhotoCredits,
   currentTurn,
   categories,
   selectedCategoryId,
@@ -34,16 +36,10 @@ export const Controls: React.FC<ControlsProps> = ({
   onDifficultyToggle,
   onExploreToggle,
   onHintToggle,
+  onPhotoCreditsToggle,
   onCategoryChange,
-  onCustomImagesUpload,
   onOpenHelp
 }) => {
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      onCustomImagesUpload(e.target.files);
-    }
-  };
-
   return (
     <div className="controls-toolbar" id="controls-toolbar">
       <div className="button-group">
@@ -99,6 +95,15 @@ export const Controls: React.FC<ControlsProps> = ({
           💡 Hints: {hintMode ? 'ON' : 'OFF'}
         </button>
 
+        <button
+          className={`btn btn-toggle ${showPhotoCredits ? 'active' : ''}`}
+          onClick={onPhotoCreditsToggle}
+          id="btn-credits-toggle"
+          title="Toggle photographer attribution credits on picture cards"
+        >
+          📷 Credits: {showPhotoCredits ? 'ON' : 'OFF'}
+        </button>
+
         {playMode === 'VERSUS' && currentTurn && (
           <div className="turn-badge" id="player-turn-indicator">
             👉 Turn: <strong style={{ color: currentTurn === 'Player 1' ? '#00f2fe' : '#ff007f' }}>{currentTurn}</strong>
@@ -128,18 +133,6 @@ export const Controls: React.FC<ControlsProps> = ({
             </option>
           ))}
         </select>
-
-        <label className="btn btn-primary" htmlFor="custom-image-upload" id="label-upload" title="Select 8 or more photos from iPhone Photos App or computer">
-          📱 Create Group from Photos
-          <input
-            id="custom-image-upload"
-            type="file"
-            multiple
-            accept="image/*,image/heic,image/heif"
-            style={{ display: 'none' }}
-            onChange={handleFileChange}
-          />
-        </label>
       </div>
     </div>
   );
